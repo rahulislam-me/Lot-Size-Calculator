@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>XAUUSD Trading Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@0.562.0/dist/umd/lucide.min.js"></script>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="header">
+            <div class="header-text">
+                <span class="eyebrow"><i data-lucide="calculator"></i> Trading tools</span>
+                <h1>XAUUSD Calculator</h1>
+                <p>Calculate your trading risk and potential reward.</p>
+            </div>
+            <div class="gold-icon" aria-hidden="true">
+                <i data-lucide="coins"></i>
+                <span>Au</span>
+            </div>
+        </header>
+
+        <div class="layout">
+
+        <!-- INPUTS COLUMN -->
+        <div class="col col-inputs">
+
+        <!-- TRADE SETUP -->
+        <section class="card setup-card">
+            <div class="section-title">
+                <h2><i data-lucide="sliders-horizontal"></i> Trade setup</h2>
+                <span class="badge"><i data-lucide="zap"></i> Live calculation</span>
+            </div>
+
+            <div class="input-grid">
+                <div class="field">
+                    <label for="balance"><i data-lucide="wallet"></i> Account balance ($)</label>
+                    <div class="input-wrap">
+                        <i data-lucide="dollar-sign"></i>
+                        <input type="number" id="balance" value="10000" min="0" step="any">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="entry"><i data-lucide="log-in"></i> Gold entry price ($)</label>
+                    <div class="input-wrap">
+                        <i data-lucide="tag"></i>
+                        <input type="number" id="entry" value="4000" min="0" step="any">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="lot"><i data-lucide="layers"></i> Lot size</label>
+                    <div class="input-wrap">
+                        <i data-lucide="box"></i>
+                        <input type="number" id="lot" value="0.10" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="contract"><i data-lucide="scale"></i> Contract size (ounces)</label>
+                    <div class="input-wrap">
+                        <i data-lucide="weight"></i>
+                        <input type="number" id="contract" value="100" min="0" step="any">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="sl"><i data-lucide="shield-alert"></i> Stop loss distance ($)</label>
+                    <div class="input-wrap loss-input">
+                        <i data-lucide="trending-down"></i>
+                        <input type="number" id="sl" value="9" min="0" step="any">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="tp"><i data-lucide="target"></i> Take profit distance ($)</label>
+                    <div class="input-wrap profit-input">
+                        <i data-lucide="trending-up"></i>
+                        <input type="number" id="tp" value="27" min="0" step="any">
+                    </div>
+                </div>
+
+                <div class="field full-width">
+                    <label for="direction"><i data-lucide="arrow-left-right"></i> Trade direction</label>
+                    <div class="input-wrap select-wrap">
+                        <i data-lucide="arrow-up-circle" class="dir-icon dir-buy"></i>
+                        <i data-lucide="arrow-down-circle" class="dir-icon dir-sell"></i>
+                        <select id="direction">
+                            <option value="buy">BUY (Long)</option>
+                            <option value="sell">SELL (Short)</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="chevron"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        </div>
+
+        <!-- OUTPUTS COLUMN -->
+        <div class="col col-outputs">
+
+        <!-- RISK REWARD -->
+        <section class="card rr-card">
+            <div class="rr-top">
+                <div>
+                    <span class="result-label"><i data-lucide="scale"></i> Risk : reward ratio</span>
+                    <h2 id="rr">1 : 3.00</h2>
+                </div>
+                <div class="rr-icon"><i data-lucide="gauge"></i></div>
+            </div>
+            <div class="rr-visual">
+                <div class="risk-bar"></div>
+                <div class="reward-bar"></div>
+            </div>
+            <div class="rr-legend">
+                <span class="legend-risk"><i data-lucide="circle"></i> Risk</span>
+                <span class="rr-caption">Potential reward compared to risk</span>
+                <span class="legend-reward"><i data-lucide="circle"></i> Reward</span>
+            </div>
+        </section>
+
+        <!-- RESULTS -->
+        <section class="results-section">
+            <div class="section-title">
+                <h2><i data-lucide="bar-chart-3"></i> Trading results</h2>
+                <span class="badge"><i data-lucide="refresh-cw"></i> Auto updated</span>
+            </div>
+
+            <div class="result-grid">
+                <div class="card result-card loss-card">
+                    <div class="result-head">
+                        <span class="result-label">Stop loss</span>
+                        <span class="chip chip-red"><i data-lucide="trending-down"></i></span>
+                    </div>
+                    <h3 id="loss">$90.00</h3>
+                    <p id="riskPercent">0.90% of balance</p>
+                </div>
+
+                <div class="card result-card profit-card">
+                    <div class="result-head">
+                        <span class="result-label">Take profit</span>
+                        <span class="chip chip-green"><i data-lucide="trending-up"></i></span>
+                    </div>
+                    <h3 id="profit">$270.00</h3>
+                    <p id="profitPercent">2.70% of balance</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICE LEVELS -->
+        <section class="card price-card">
+            <div class="section-title">
+                <h2><i data-lucide="candlestick-chart"></i> Price levels</h2>
+            </div>
+
+            <div class="price-row">
+                <span><i data-lucide="log-in"></i> Entry price</span>
+                <strong id="entryPrice">$4,000.00</strong>
+            </div>
+            <div class="price-row stop-row">
+                <span><i data-lucide="octagon-x"></i> Stop loss price</span>
+                <strong id="slPrice">$3,991.00</strong>
+            </div>
+            <div class="price-row target-row">
+                <span><i data-lucide="flag"></i> Take profit price</span>
+                <strong id="tpPrice">$4,027.00</strong>
+            </div>
+        </section>
+
+        <!-- BALANCE -->
+        <section class="card balance-card">
+            <div class="section-title">
+                <h2><i data-lucide="piggy-bank"></i> Balance projection</h2>
+            </div>
+
+            <div class="balance-grid">
+                <div>
+                    <span><i data-lucide="arrow-down-right"></i> After stop loss</span>
+                    <strong class="negative" id="afterLoss">$9,910.00</strong>
+                </div>
+                <div>
+                    <span><i data-lucide="arrow-up-right"></i> After take profit</span>
+                    <strong class="positive" id="afterProfit">$10,270.00</strong>
+                </div>
+            </div>
+        </section>
+
+        </div>
+
+        </div>
+
+        <footer>
+            <p class="disclaimer">
+                <i data-lucide="info"></i>
+                <span>Educational calculator only. Actual trading results may vary
+                due to spread, commission, slippage and execution.</span>
+            </p>
+            <p class="credit">Designed for XAUUSD • Dark dashboard</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
